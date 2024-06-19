@@ -1,6 +1,6 @@
 # Gesture Recognition Model
 
-This repository contains the code and resources for developing a Bisindo Gesture Recognition model. The project aims to help hearing individuals learn sign language by recognizing and interpreting gestures, thereby fostering inclusivity and bridging the communication gap between the hearing and deaf communities.
+This repository contains the code and resources for developing a Bisindo Gesture Recognition model using time series dataset from the scratch. The project aims to help hearing individuals learn sign language by recognizing and interpreting gestures, thereby fostering inclusivity and bridging the communication gap between the hearing and deaf communities.
 
 ## Table of Contents
 - [Project Structure](#project-structure)
@@ -62,11 +62,16 @@ To run this project, you need to set up a Python environment with the required l
 ## Usage
 
 1. **Dataset Creation:**
-   - Create and preprocess the dataset in the `dataset-create.ipynb` notebook using MediaPipe and OpenCV libraries.
-   - We have already created our time series dataset consists of 33 classes (26 alphabets and 7 introduction words), where each class contains 100 sequences or videos. Each sequence consists of 30 frames. You can find our dataset on Kaggle [here](https://www.kaggle.com/datasets/niputukarismadewi/talkee-bisindo-sign-language-dataset).
+   - Create and preprocess the time series dataset in the `dataset-create.ipynb` notebook
+   - Record MP4 video using OpenCV library and integrate with MediaPipe to detect left & right hand landmark
+   - Extract each sequences (videos) into 30 frame 
+   - Extract right & left hand landmark keypoints for each frame, store it as numpy, and save into 30 file .npy
+
+   We have already created a time series dataset with 33 classes (26 alphabets and 7 introduction words). Each class contains 100 sequences (videos), with each sequence consisting of 30 frames and saved keypoint landmarks in 30 `.npy` files. You can find our dataset on Kaggle [here](https://www.kaggle.com/datasets/niputukarismadewi/talkee-bisindo-sign-language-dataset).
 
 2. **Train Models:**
-   - Use the notebooks in the `train-code-final-dataset/` directory to train models with ddifferent architectures (GRU, LSTM, ConvLSTM) using the TensorFlow library.
+   - Use the notebooks in the `train-code-final-dataset/` directory to train models with different architectures (GRU, LSTM, ConvLSTM) using the TensorFlow library.
+   - Each notebook includes a summary of the details model architecture layers.
    - We experimented with three different architectures to identify the model with the best performance.
    - After training, the generated models are saved in the `model-final-dataset/` directory in `.h5` format.
 
